@@ -8,6 +8,8 @@ vim: /workspace/.vim/autoload/pathogen.vim ~/.vim/bundle/vim-go ~/.vim/pack/vend
 
 ~/.vim/bundle/vim-go:
 	git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
+	vim -eN +GoInstallBinaries +q
+	#vim +'silent :GoInstallBinaries' +qall
 
 ~/.vim/pack/vendor/start/VimCompletesMe:
 	mkdir -p  ~/.vim/pack/vendor/start
