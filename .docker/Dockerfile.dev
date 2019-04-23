@@ -9,8 +9,11 @@ RUN go get -u -d gocv.io/x/gocv && apk add vim && ln -sf /usr/bin/vim /usr/bin/v
 	&& ln -s /usr/local/go/bin/gofmt /usr/bin/gofmt \
 	&& echo "###########################################" \
 	&& echo "#!/bin/bash" >> /run.sh \
+	&& echo "echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheelgroup" >> /run.sh \
 	&& echo "addgroup -g \$HGID dev" >> /run.sh \
 	&& echo "adduser -u \$HUID -D -G dev -s /bin/bash -h /workspace dev" >> /run.sh \
+	&& echo "adduser dev wheel" >> /run.sh \
+	&& echo "su - dev -c 'make -C .docker/vim'" >> /run.sh \
 	&& echo "su - dev" >> /run.sh \
 	&& chmod +x /run.sh
 
