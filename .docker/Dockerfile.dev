@@ -1,0 +1,18 @@
+FROM denismakogon/gocv-alpine:4.0.1-buildstage
+
+WORKDIR /workspace
+
+RUN go get -u -d gocv.io/x/gocv && apk add vim && ln -sf /usr/bin/vim /usr/bin/vi \
+	&& echo "###########################################" \
+	&& ln -s /usr/local/go/bin/go    /usr/bin/go \
+	&& ln -s /usr/local/go/bin/godoc /usr/bin/godoc \
+	&& ln -s /usr/local/go/bin/gofmt /usr/bin/gofmt \
+	&& echo "###########################################" \
+	&& echo "#!/bin/bash" >> /run.sh \
+	&& echo "addgroup -g \$HGID dev" >> /run.sh \
+	&& echo "adduser -u \$HUID -D -G dev -s /bin/bash -h /workspace dev" >> /run.sh \
+	&& echo "su - dev" >> /run.sh \
+	&& chmod +x /run.sh
+
+CMD /run.sh
+
