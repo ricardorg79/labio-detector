@@ -20,3 +20,4 @@ $(DEVIMG): .build/$(DEVIMG)
 
 .PHONY clean:
 	rm -fr .build
+	rm -fr .vim
